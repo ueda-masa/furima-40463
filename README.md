@@ -58,7 +58,6 @@ Things you may want to cover:
 | condition           | string     | null: false |
 | shipping_charge     | string     | null: false |
 | shipment_source     | string     | null: false |
-| shipment_source     | string     | null: false |
 | shipping_day        | string     | null: false |
 | price               | integer    | null: false |
 | user                | references | null: false , foreign_key:true |
