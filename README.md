@@ -22,3 +22,57 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
+
+
+
+# テーブル設計
+
+## users テーブル
+
+| Column              | Type   | Options     |
+| ------------------- | ------ | ----------- |
+| name                | string | null: false |                     
+| email               | string | null: false , unique: true |
+| encrypted_password  | string | null: false |
+| first_name_kanji    | string | null: false |
+| family_name_kanji   | string | null: false |
+| first_name_kana     | string | null: false |
+| family_name_kana    | string | null: false |
+| birth_days          | date   | null: false |
+
+
+
+## items テーブル
+
+| Column              | Type       | Options     |
+| ------------------- | ---------- | ----------- |
+| image               | string     | null: false |
+| name                | string     | null: false |
+| description         | text       | null: false |
+| category            | string     | null: false |
+| condition           | string     | null: false |
+| shipping_charge     | string     | null: false |
+| shipment_source     | string     | null: false |
+| shipment_source     | string     | null: false |
+| shipping_day        | string     | null: false |
+| price               | integer    | null: false |
+| user                | references | null: false , foreign_key:true |
+
+
+
+## prototypes テーブル
+
+| Column        | Type       | Options     |
+| ------------- | ---------- | ----------- |
+| postal_code   | string     | null: false |
+| prefecture    | string     | null: false |
+| city          | string     | null: false |
+| address       | string     | null: false |
+| building      | string     | null: false |
+| phone_number  | string     | null: false |
+| comment       | text       | null: false | 
+| user          | references | null: false , foreign_key:true |
+| item          | references | null: false , foreign_key:true |
+
+
+
