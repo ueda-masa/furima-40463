@@ -41,8 +41,8 @@ Things you may want to cover:
 | birth_days          | date   | null: false |
 
 
-* has_many :item
-* has_many :order
+* has_many :items
+* has_many :orders
 
 
 
@@ -50,14 +50,13 @@ Things you may want to cover:
 
 | Column              | Type       | Options     |
 | ------------------- | ---------- | ----------- |
-| image               | string     | null: false |
 | name                | string     | null: false |
 | description         | text       | null: false |
 | category_id         | integer    | null: false |
-| condition           | string     | null: false |
-| shipping_charge     | string     | null: false |
-| shipment_source     | string     | null: false |
-| shipping_day        | string     | null: false |
+| condition_id        | integer    | null: false |
+| shipping_charge_id  | integer    | null: false |
+| shipment_source_id  | integer    | null: false |
+| shipping_day_id     | integer    | null: false |
 | price               | integer    | null: false |
 | user                | references | null: false , foreign_key:true |
 
@@ -70,13 +69,6 @@ Things you may want to cover:
 
 | Column        | Type       | Options     |
 | ------------- | ---------- | ----------- |
-| postal_code   | string     | null: false |
-| prefecture    | string     | null: false |
-| city          | string     | null: false |
-| address       | string     | null: false |
-| building      | string     | null: false |
-| phone_number  | string     | null: false |
-| comment       | text       | null: false | 
 | user          | references | null: false , foreign_key:true |
 | item          | references | null: false , foreign_key:true |
 
@@ -90,7 +82,7 @@ Things you may want to cover:
 | Column        | Type       | Options     |
 | ------------- | ---------- | ----------- |
 | postal_code   | string     | null: false |
-| prefecture    | string     | null: false |
+| prefecture_id | integer    | null: false |
 | city          | string     | null: false |
 | address       | string     | null: false |
 | building      | string     |             |
