@@ -53,7 +53,7 @@ Things you may want to cover:
 | image               | string     | null: false |
 | name                | string     | null: false |
 | description         | text       | null: false |
-| category_id         | integer     | null: false |
+| category_id         | integer    | null: false |
 | condition           | string     | null: false |
 | shipping_charge     | string     | null: false |
 | shipment_source     | string     | null: false |
@@ -82,6 +82,7 @@ Things you may want to cover:
 
 * belongs_to:user
 * belongs_to:item
+* has_one:addresse
 
 
 ## addresses テーブル
