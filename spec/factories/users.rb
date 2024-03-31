@@ -1,13 +1,13 @@
 FactoryBot.define do
   factory :user do
-    sequence(:nickname) { |n| "test#{n}" }
-    sequence(:email) { |n| "test#{n}@example.com" }
-    password { 'password' }
-    password_confirmation { 'password' }
-    first_name_kanji { '山田' }
-    family_name_kanji { '太郎' }
-    first_name_kana { 'ヤマダ' }
-    family_name_kana { 'タロウ' }
-    birth_days { Date.new(1990, 1, 1) }
+    email                 { 'test@example.com' } # 有効なメールアドレスの形式に修正
+    password              { 'Password1' } # 半角英字と半角数字の組み合わせ
+    password_confirmation { 'Password1' } # パスワードと同じ値を設定
+    name                  { 'Test User' }
+    first_name_kanji      { '漢字名' }
+    family_name_kanji     { '漢字姓' }
+    first_name_kana       { 'カナメイ' }
+    family_name_kana      { 'カナセイ' }
+    birth_days            { Date.today }
   end
 end
