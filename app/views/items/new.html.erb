@@ -55,7 +55,7 @@
           商品の状態
           <span class="indispensable">必須</span>
         </div>
-        <%= f.collection_select(:sales_status, ['---', '新品、未使用', '未使用に近い', '目立った傷や汚れなし', 'やや傷や汚れあり', '傷や汚れあり', '全体的に状態が悪い'], :to_s, :to_s, {prompt: '---'}, {class: "select-box", id: "item-sales-status"}) %>
+        <%= f.collection_select(:condition, ['---', '新品、未使用', '未使用に近い', '目立った傷や汚れなし', 'やや傷や汚れあり', '傷や汚れあり', '全体的に状態が悪い'], :to_s, :to_s, {prompt: '---'}, {class: "select-box", id: "item-sales-status"}) %>
       </div>
     </div>
     <%# /商品の詳細 %>
@@ -71,17 +71,17 @@
           配送料の負担
           <span class="indispensable">必須</span>
         </div>
-        <%= f.collection_select(:shipping_fee_burden, ['---', '着払い(購入者負担)', '送料込み(出品者負担)'], :itself, :itself, { prompt: '---' }, { class: "select-box", id: "item-shipping-fee-status" }) %>
+        <%= f.collection_select(:shipping_charge, ['---', '着払い(購入者負担)', '送料込み(出品者負担)'], :itself, :itself, { prompt: '---' }, { class: "select-box", id: "item-shipping-fee-status" }) %>
         <div class="weight-bold-text">
           発送元の地域
           <span class="indispensable">必須</span>
         </div>
-        <%= f.collection_select(:shipping_origin_prefecture, [], :itself, :itself, { include_blank: true }, { class: "select-box", id: "item-prefecture" }) %>
+        <%= f.select :prefecture_id, @prefectures, { include_blank: '---' }, { class: "select-box", id: "item-prefecture" } %> 
         <div class="weight-bold-text">
           発送までの日数
           <span class="indispensable">必須</span>
         </div>
-        <%= f.collection_select(:shipping_duration, [], :itself, :itself, { include_blank: '---' }, { class: "select-box", id: "item-scheduled-delivery" }) %>
+        <%= f.collection_select(:shipping_day_id, [], :itself, :itself, { include_blank: '---' }, { class: "select-box", id: "item-scheduled-delivery" }) %>
       </div>
     </div>
     <%# /配送について %>
