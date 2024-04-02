@@ -1,9 +1,14 @@
 class Item < ApplicationRecord
  extend ActiveHash::Associations::ActiveRecordExtensions
  belongs_to :category_id
+ belongs_to :condition_id
+ belongs_to :shipping_charge_id
+ belongs_to :prefecture_id
+ belongs_to :shipping_day_id
 
  belongs_to :user
- belongs_to :prefecture
+ has_one_attached :image
+
  
  validates :name, presence: true
  validates :description, presence: true

@@ -22,6 +22,9 @@
           クリックしてファイルをアップロード
         </p>
         <%= f.file_field :image, id:"item-image" %>
+        <% if @item.image.attached? %>
+          <%= image_tag rails_blob_path(@item.image), class: 'message-image' %>
+        <% end %>
       </div>
     </div>
     <%# /商品画像 %>
