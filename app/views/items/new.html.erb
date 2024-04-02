@@ -81,7 +81,7 @@
           発送までの日数
           <span class="indispensable">必須</span>
         </div>
-        <%= f.collection_select(:shipping_day_id, ShippingdayId.all,:id, :name, {}, {class:"shipping_day-select"}) %>
+        <%= f.collection_select(:shipping_day_id, ShippingDayId.all,:id, :name, {}, {class:"shipping_day-select"}) %>
       </div>
     </div>
     <%# /配送について %>
