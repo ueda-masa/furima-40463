@@ -7,11 +7,11 @@ RSpec.describe Item, type: :model do
       @item = FactoryBot.build(:item)
     end
 
-        # 正常系
+      # 正常系
         context '正常に登録できる場合' do
-    it '全ての情報が正しく入力されていれば保存できること' do
-      expect(@item).to be_valid
-    end
+         it '全ての情報が正しく入力されていれば保存できること' do
+           expect(@item).to be_valid
+         end
 
        # 異常系
   context '正常に登録できない場合' do
@@ -79,22 +79,23 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include("Price can't be blank")
       end
 
-    it '価格が300未満だと保存できないこと' do
-      @item.price = 299
-      @item.valid?
-      expect(@item.errors.full_messages).to include("Price must be greater than or equal to 300")
-    end
+      it '価格が300未満だと保存できないこと' do
+        @item.price = 299
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Price must be greater than or equal to 300")
+      end
 
-    it '価格が9999999より大きいと保存できないこと' do
-      @item.price = 10_000_000
-      @item.valid?
-      expect(@item.errors.full_messages).to include("Price must be less than or equal to 9999999")
-    end
+      it '価格が9999999より大きいと保存できないこと' do
+        @item.price = 10_000_000
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Price must be less than or equal to 9999999")
+      end
 
-    it '価格が半角数字以外だと保存できないこと' do
-      @item.price = '１０００'
-      @item.valid?
-      expect(@item.errors.full_messages).to include("Price is not a number")
+      it '価格が半角数字以外だと保存できないこと' do
+        @item.price = '１０００'
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Price is not a number")
+      end
     end
   end
 end
