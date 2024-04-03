@@ -2,12 +2,15 @@ FactoryBot.define do
   factory :item do
     name                   { '商品名' }  
     description            { '商品の説明' } 
-    category               { CategoryId.find_or_create_by(name: 'メンズ') } 
-    condition              { ConditionId.find_or_create_by(name: '新品、未使用') }
-    shipping_charge        { ShippingChargeId.find_or_create_by(name: '着払い(購入者負担)') }
-    prefecture             { PrefectureId.find_or_create_by(name: '北海道') }
-    shipping_day           { ShippingDayId.find_or_create_by(name: '1\~2日で発送') }
+    category_id            { 2 } 
+    condition_id           { 2 }
+    shipping_charge_id     { 2 }
+    prefecture_id          { 2 }
+    shipping_day_id        { 2 }
     price                  { 1000 }
+    association :user # userとの関連付け
+    after(:build) do |item|
+      item.image.attach(io: File.open('app/assets/images/item-sample.png'), filename: 'item-sample.png')
+    end
   end
 end
-
