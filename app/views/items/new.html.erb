@@ -53,12 +53,12 @@
           カテゴリー
           <span class="indispensable">必須</span>
         </div>
-        <%= f.collection_select(:category_id, Category.all,:id, :name, {}, {class:"category-select"}) %>
+        <%= f.collection_select(:category_id, Category.all, :id, :name, {}, {class: "select-box category-select"}) %>
         <div class="weight-bold-text">
           商品の状態
           <span class="indispensable">必須</span>
         </div>
-        <%= f.collection_select(:condition_id, Condition.all,:id, :name, {}, {class:"condition-select"}) %>
+        <%= f.collection_select(:condition_id, Condition.all,:id, :name, {}, {class: "select-box condition-select"}) %>
       </div>
     </div>
     <%# /商品の詳細 %>
@@ -74,17 +74,17 @@
           配送料の負担
           <span class="indispensable">必須</span>
         </div>
-        <%= f.collection_select(:shipping_charge_id, ShippingCharge.all,:id, :name, {}, {class:"shipping_charge-select"}) %>
+        <%= f.collection_select(:shipping_charge_id, ShippingCharge.all,:id, :name, {}, {class: "select-box shipping_charge-select"}) %>
         <div class="weight-bold-text">
           発送元の地域
           <span class="indispensable">必須</span>
         </div>
-        <%= f.collection_select(:prefecture_id, Prefecture.all,:id, :name, {}, {class:"prefecture-select"}) %>
+        <%= f.collection_select(:prefecture_id, Prefecture.all,:id, :name, {}, {class:"select-box prefecture-select"}) %>
         <div class="weight-bold-text">
           発送までの日数
           <span class="indispensable">必須</span>
         </div>
-        <%= f.collection_select(:shipping_day_id, ShippingDay.all,:id, :name, {}, {class:"shipping_day-select"}) %>
+        <%= f.collection_select(:shipping_day_id, ShippingDay.all,:id, :name, {}, {class:"select-box shipping_day-select"}) %>
       </div>
     </div>
     <%# /配送について %>
@@ -102,7 +102,7 @@
             <span class="indispensable">必須</span>
           </div>
           <span class="sell-yen">¥</span>
-          <%= f.number_field :price, class:"price-input", id:"item-price", placeholder:"例）300", min: 300, max: 9999999 %>
+          <%= f.text_field :price, class:"price-input", id:"item-price", placeholder:"例）300", min: 300, max: 9999999 %>
         </div>
         <div class="price-content">
           <span>販売手数料 (10%)</span>
