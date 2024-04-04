@@ -1,5 +1,6 @@
 class ItemsController < ApplicationController
   before_action :set_item, only: [:edit, :update]
+  before_action :authenticate_user!, except: [:index, :show]
 
   def index
     @items = Item.order("created_at DESC")
@@ -14,7 +15,7 @@ class ItemsController < ApplicationController
     if @item.save
       redirect_to root_path, notice: 'Item was successfully created.'
     else
-      render :new
+      render :new, status: :unprocessable_entity
     end
   end
 
@@ -45,5 +46,3 @@ class ItemsController < ApplicationController
     @item = Item.find(params[:id])
   end
 end
-
-
