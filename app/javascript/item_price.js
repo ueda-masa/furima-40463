@@ -5,7 +5,6 @@ priceInput.addEventListener("input", () => {
   const taxValue = Math.floor(inputValue * 0.1); // これは手数料
   addTaxDom.innerHTML = taxValue;
 
-  // 下記は出品部分に利益を表示するため
-  const profitDom = document.getElementById("profit");  // profitは販売利益、viewﾌｧｲﾙからもってくる
-  profitDom.innerHTML = inputValue - taxValue;
+  const profitDom = document.getElementById("profit");  
+  profitDom.innerHTML = Math.floor(inputValue - taxValue); // ここでMath.floorを追加しました
 });

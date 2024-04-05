@@ -19,22 +19,22 @@ class ItemsController < ApplicationController
     end
   end
 
-  def destroy
-    item = Item.find(params[:id])
-    item.destroy
-    redirect_to root_path
-  end
+  #def destroy
+    #item = Item.find(params[:id])
+    #item.destroy
+    #redirect_to root_path
+  #end
 
-  def edit
-  end
+  #def edit
+  #end
 
-  def update
-    if @item.update(item_params)
-      redirect_to @item, notice: 'Item was successfully updated.'
-    else
-      render 'edit'
-    end
-  end
+  #def update
+    #if @item.update(item_params)
+      #redirect_to @item, notice: 'Item was successfully updated.'
+    #else
+      #render 'edit'
+    #end
+  #end
 
   private
 
@@ -46,3 +46,4 @@ class ItemsController < ApplicationController
     @item = Item.find(params[:id])
   end
 end
+

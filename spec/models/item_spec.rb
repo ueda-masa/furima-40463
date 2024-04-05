@@ -42,42 +42,42 @@ RSpec.describe Item, type: :model do
       end
 
       context 'カテゴリー' do
-        it 'カテゴリーが空だと保存できないこと' do
-          @item.category_id = nil
+        it 'カテゴリーが「---」だと保存できないこと' do
+          @item.category_id = 1
           @item.valid?
-          expect(@item.errors.full_messages).to include("Category can't be blank")
+          expect(@item.errors.full_messages).to include("Category must be other than 1")
         end
       end
-
+      
       context '商品の状態' do
-        it '商品の状態が空だと保存できないこと' do
-          @item.condition_id = nil
+        it '商品の状態が「---」だと保存できないこと' do
+          @item.condition_id = 1
           @item.valid?
-          expect(@item.errors.full_messages).to include("Condition can't be blank")
+          expect(@item.errors.full_messages).to include("Condition must be other than 1")
         end
       end
-
-      context '配送料の負担' do    
-        it '配送料の負担が空だと保存できないこと' do
-          @item.shipping_charge_id = nil
+      
+      context '配送料の負担' do
+        it '配送料の負担が「---」だと保存できないこと' do
+          @item.shipping_charge_id = 1
           @item.valid?
-          expect(@item.errors.full_messages).to include("Shipping charge can't be blank")
+          expect(@item.errors.full_messages).to include("Shipping charge must be other than 1")
         end
       end
-
-      context '発送元の地域' do  
-        it '発送元の地域が空だと保存できないこと' do
-          @item.prefecture_id = nil
+      
+      context '発送元の地域' do
+        it '発送元の地域が「---」だと保存できないこと' do
+          @item.prefecture_id = 1
           @item.valid?
-          expect(@item.errors.full_messages).to include("Prefecture can't be blank")
+          expect(@item.errors.full_messages).to include("Prefecture must be other than 1")
         end
       end
-
-      context '発送までの日数' do        
-        it '発送までの日数が空だと保存できないこと' do
-          @item.shipping_day_id = nil
+      
+      context '発送までの日数' do
+        it '発送までの日数が「---」だと保存できないこと' do
+          @item.shipping_day_id = 1
           @item.valid?
-          expect(@item.errors.full_messages).to include("Shipping day can't be blank")
+          expect(@item.errors.full_messages).to include("Shipping day must be other than 1")
         end
       end
 
@@ -105,6 +105,15 @@ RSpec.describe Item, type: :model do
           @item.valid?
           expect(@item.errors.full_messages).to include("Price is not a number")
         end
+
+        context 'userが紐づいていない場合' do
+          it 'userが紐づいていなければ保存できないこと' do
+            @item.user = nil
+            @item.valid?
+            expect(@item.errors.full_messages).to include("User must exist")
+          end
+        end
+        
       end
     end
   end
