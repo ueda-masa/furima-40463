@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users
   root to: 'items#index'
-  resources :items, only: [:index, :destroy, :create, :new, :edit ]
+  resources :items, only: [:index, :destroy, :create, :new, :edit, :update]
   post '/users' => 'devise/registrations#create'
 end
 
@@ -11,4 +11,3 @@ end
   # Defines the root path route ("/")
   # root "articles#index"
 
-  
