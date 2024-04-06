@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users
   root to: 'items#index'
-  resources :items, only: [:index, :destroy, :create, :new, :edit, :update]
+  resources :items, only: [:index, :destroy, :create, :new, :edit, :update, :show]
   post '/users' => 'devise/registrations#create'
 end
 
