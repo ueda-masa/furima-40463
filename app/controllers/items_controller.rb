@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
   before_action :set_item, only: [:edit, :update]
-  before_action :authenticate_user!, except: [:index, :show, :edit]
+  before_action :authenticate_user!, except: [:index, :show]
 
   def index
     @items = Item.order("created_at DESC")
@@ -27,20 +27,20 @@ class ItemsController < ApplicationController
   
 
 
-  def edit
-    @item = Item.find(params[:id])
-    if @item.sold_out? || current_user.id != @item.user_id
-      redirect_to root_path
-    end
+def edit
+  if @item.sold_out? || current_user.id != @item.user_id
+    redirect_to root_path
   end
+end
 
-  def update
-    if @item.update(item_params)
-      redirect_to @item, notice: 'Item was successfully updated.'
-    else
-      render 'edit'
-    end
+def update
+  if @item.update(item_params)
+    redirect_to item_path(@item)
+  else
+    puts @item.errors.full_messages
+    render :edit, status: :unprocessable_entity
   end
+end
 
   def show
     @item = Item.find(params[:id])
