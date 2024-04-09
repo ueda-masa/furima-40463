@@ -24,9 +24,8 @@ class Item < ApplicationRecord
   validates :price, numericality: { less_than_or_equal_to: 9999999, message: "must be less than or equal to 9999999" }
 
   def sold_out?
-    # ここに売り切れているかを判断するロジックを書く
-    # 仮にOrderが存在することで売り切れとするなら
-    
+    # Orderが存在するかどうかを確認する
+    self.order.present?
   end
 
 
