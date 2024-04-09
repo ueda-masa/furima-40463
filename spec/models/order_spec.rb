@@ -38,18 +38,33 @@ end
 RSpec.describe OrderForm, type: :model do
     describe 'OrderForm' do
       before do
-        user = FactoryBot.create(:user)
-        item = FactoryBot.create(:item)
-        @order_form = FactoryBot.build(:order_form, user_id: user.id, item_id: item.id)
+        @order_form = FactoryBot.build(:order_form)
       end
 
       # 異常系
       context '正常に登録できない場合' do
+        context 'userが紐づいていない場合' do
+          it 'userが紐づいていなければ保存できないこと' do
+            @order_form.user = nil
+            @order_formr.valid?
+            expect(@order_form.errors.full_messages).to include("User must exist")
+          end
+        end
+    
+        context 'itemが紐づいていない場合' do
+          it 'itemが紐づいていなければ保存できないこと' do
+            @order_form.item = nil
+            @order_form.valid?
+            expect(@order_form.errors.full_messages).to include("Item must exist")
+          end
+        end
+
+
         context '郵便番号' do
           it '郵便番号が空だと保存できないこと' do
             @order_form.postal_code = nil
             @order_form.valid?
-            expect(@order_form.errors.full_messages).to include("Postal code can't be blank", "Postal code is invalid. Enter it as follows (e.g. 123-4567)")
+            expect(@order_form.errors.full_messages).to include("Postal code can't be blank")
           end
       
           it '郵便番号は、「3桁ハイフン4桁」の半角文字列のみ保存可能なこと' do

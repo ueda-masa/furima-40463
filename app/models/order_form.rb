@@ -3,8 +3,7 @@ class OrderForm
   attr_accessor :user_id, :item_id, :postal_code, :prefecture_id, :city, :address, :building, :phone_number
 
   with_options presence: true do  
-    validates :user_id, presence: { message: "Token can't be blank" } 
-    validates :item_id, presence: { message: "Token can't be blank" }
+    validates :user_id, :item_id, presence: { message: "Token can't be blank" } 
     validates :postal_code, format: { with: /\A\d{3}-\d{4}\z/, message: "Postal code is invalid. Enter it as follows (e.g. 123-4567)" }
     validates :prefecture_id, numericality: { other_than: 0, message: "Prefecture can't be blank" }
     validates :city, presence: { message: "City can't be blank" }
@@ -22,5 +21,6 @@ class OrderForm
     Address.create(postal_code: postal_code, prefecture_id: prefecture_id, city: city, address: address, building: building, phone_number: phone_number, order_id: order.id)
   end
 end
+
 
 
