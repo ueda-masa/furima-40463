@@ -1,6 +1,6 @@
 class OrderForm
   include ActiveModel::Model
-  attr_accessor :user_id, :item_id, :postal_code, :prefecture_id, :city, :address, :building, :phone_number
+  attr_accessor :user_id, :item_id, :postal_code, :prefecture_id, :city, :address, :building, :phone_number, :token
 
   with_options presence: true do  
     validates :user_id, :item_id 
@@ -12,12 +12,7 @@ class OrderForm
     validates :phone_number, length: { minimum: 10, message: "is too short" }
   end
 
-  attr_accessor :user
 
-  def initialize(attributes = {})
-    @user = attributes[:user]
-    # 他の属性の初期化も行う
-  end
 
   def prefecture
     Prefecture.find(prefecture_id)
@@ -26,14 +21,16 @@ class OrderForm
   
   def save
     ActiveRecord::Base.transaction do
-      order = Order.create(user_id: user_id, item_id: item_id)
-      Address.create(postal_code: postal_code, prefecture_id: prefecture_id, city: city, address: address, building: building, phone_number: phone_number, order_id: order.id)
+      order = Order.create(user_id: user_id, item_id: item_id, token: token)
+      if order.valid?
+        Address.create(postal_code: postal_code, prefecture_id: prefecture_id, city: city, address: address, building: building, phone_number: phone_number, order_id: order.id)
+      else
+        return false
+      end
     end
+    true
   end
   
-
-
-  # item= メソッドを定義
   def item=(item)
     self.item_id = item.id
   end

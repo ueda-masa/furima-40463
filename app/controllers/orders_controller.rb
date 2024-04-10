@@ -1,4 +1,6 @@
 class OrdersController < ApplicationController
+  before_action :authenticate_user!
+
   def index
     gon.public_key = ENV["PAYJP_PUBLIC_KEY"]
     @item = Item.find(params[:item_id])
@@ -21,11 +23,12 @@ class OrdersController < ApplicationController
       render :index , status: :unprocessable_entity
     end
   end
+  
 
   private
 
   def order_params
-    params.require(:order_form).permit(:user_id, :item_id, :postal_code, :prefecture_id, :city, :address, :building, :phone_number, :token).merge(user_id: current_user.id, item_id: params[:item_id],token: params[:token])
+    params.require(:order_form).permit(:postal_code, :prefecture_id, :city, :address, :building, :phone_number, :token).merge(user_id: current_user.id, item_id: params[:item_id],token: params[:token])
   end
 
   def pay_item
