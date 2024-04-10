@@ -4,12 +4,19 @@ class OrderForm
 
   with_options presence: true do  
     validates :user_id, :item_id 
-    validates :postal_code, format: { with: /\A\d{3}-\d{4}\z/, message: "Postal code is invalid. Enter it as follows (e.g. 123-4567)" }
-    validates :prefecture_id, numericality: { other_than: 0, message: "Prefecture can't be blank" }
-    validates :city, presence: { message: "City can't be blank" }
-    validates :address, presence: { message: "Addresses can't be blank" }
-    validates :phone_number, format: { with: /\A\d{10,11}\z/, message: "Phone number is invalid. Input only number" }
-    validates :phone_number, length: { minimum: 10, message: "Phone number is too short" }
+    validates :postal_code, format: { with: /\A\d{3}-\d{4}\z/, message: "is invalid." }
+    validates :prefecture_id, numericality: { other_than: 0, message: " can't be blank" }
+    validates :city, presence: { message: "can't be blank" }
+    validates :address, presence: { message: "can't be blank" }
+    validates :phone_number, format: { with: /\A\d{10,11}\z/, message: "is invalid. Input only number" }
+    validates :phone_number, length: { minimum: 10, message: "is too short" }
+  end
+
+  attr_accessor :user
+
+  def initialize(attributes = {})
+    @user = attributes[:user]
+    # 他の属性の初期化も行う
   end
 
   def prefecture
@@ -23,7 +30,16 @@ class OrderForm
       Address.create(postal_code: postal_code, prefecture_id: prefecture_id, city: city, address: address, building: building, phone_number: phone_number, order_id: order.id)
     end
   end
+  
+
+
+  # item= メソッドを定義
+  def item=(item)
+    self.item_id = item.id
+  end
 end
+
+
 
 
 
