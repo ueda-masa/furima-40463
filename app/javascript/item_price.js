@@ -8,6 +8,6 @@ document.addEventListener('turbo:load', () => {
     addTaxDom.innerHTML = taxValue;
 
     const profitDom = document.getElementById("profit");  
-    profitDom.innerHTML = Math.floor(inputValue - taxValue); // ここでMath.floorを追加しました
+    profitDom.innerHTML = Math.floor(inputValue - taxValue); 
   });
 });
