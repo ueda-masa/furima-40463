@@ -4,8 +4,8 @@ require 'faker'
 RSpec.describe OrderForm, type: :model do
   describe '商品購入機能' do
     before do
-      @user = FactoryBot.create(:user) # Userを作成して
-      @order_form = FactoryBot.build(:order_form, user_id: @user.id) # user_idを渡す
+      @user = FactoryBot.create(:user) 
+      @order_form = FactoryBot.build(:order_form, user_id: @user.id, token: "tok_abcdefghijk00000000000000000") 
     end
 
     # 正常系
@@ -14,6 +14,14 @@ RSpec.describe OrderForm, type: :model do
         @order_form.item_id = FactoryBot.create(:item).id
         expect(@order_form).to be_valid
       end
+
+      it '建物名が空でも購入できる' do 
+        @order_form.item_id = FactoryBot.create(:item).id
+        @order_form.building = nil
+        expect(@order_form).to be_valid
+      end
+
+
     end
 
     # 異常系
@@ -86,6 +94,25 @@ RSpec.describe OrderForm, type: :model do
           @order_form.valid?
           expect(@order_form.errors.full_messages).to include("Phone number is too short")
         end
+        
+        it '電話番号が12桁以上では購入できない' do
+          @order_form.phone_number = Faker::Number.number(digits: 12)
+          @order_form.valid?
+          expect(@order_form.errors.full_messages).to include("Phone number is invalid. Input only number")
+      end
+  
+        it '電話番号に半角数字以外が含まれている場合は購入できない' do
+          @order_form.phone_number = '0901234567a'
+          @order_form.valid?
+          expect(@order_form.errors.full_messages).to include("Phone number is invalid. Input only number")
+        end
+  
+        it 'tokenが空では購入できない' do
+          @order_form.token = nil
+          @order_form.valid?
+          expect(@order_form.errors.full_messages).to include("Token can't be blank")
+        end  
+
       end
     end
   end
