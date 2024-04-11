@@ -27,8 +27,6 @@ class ItemsController < ApplicationController
       render :show
     end
   end
-  
-
 
 def edit
   if @item.sold_out? || current_user.id != @item.user_id
