@@ -1,18 +1,16 @@
 const price = () => {
-  const priceInput = document.getElementById("item-price");
+  const priceInput = document.getElementById("item-price");// 商品価格のidをviewﾌｧｲﾙからもってくる
+
   priceInput.addEventListener("input", () => {
     const inputValue = priceInput.value;
+    const addTaxDom = document.getElementById("add-tax-price");// 手数料のidをviewﾌｧｲﾙからもってくる
+    const taxValue = Math.floor(inputValue * 0.1);// これは手数料
+    addTaxDom.innerHTML = taxValue;
 
-    const addTaxDom = Math.floor(inputValue * 0.1);
-    const addTaxDomElement = document.getElementById("add-tax-price");
-    addTaxDomElement.textContent = addTaxDom;
-
-    const salesProfit = Math.floor(inputValue - taxValue);
-    const salesProfitElement = document.getElementById("profit");
-    salesProfitElement.textContent = salesProfit;
+    const profitDom = document.getElementById("profit");  
+    profitDom.innerHTML = Math.floor(inputValue - taxValue); 
   });
 };
 
-window.addEventListener("turbo:load", price);
-window.addEventListener("turbo:render", price);
-
+document.addEventListener("turbo:load", price);
+document.addEventListener("turbo:render", price);
