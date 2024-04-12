@@ -1,10 +1,10 @@
 const price = () => {
-  const priceInput = document.getElementById("item-price");// 商品価格のidをviewﾌｧｲﾙからもってくる
+  const priceInput = document.getElementById("item-price");
 
   priceInput.addEventListener("input", () => {
     const inputValue = priceInput.value;
-    const addTaxDom = document.getElementById("add-tax-price");// 手数料のidをviewﾌｧｲﾙからもってくる
-    const taxValue = Math.floor(inputValue * 0.1);// これは手数料
+    const addTaxDom = document.getElementById("add-tax-price");
+    const taxValue = Math.floor(inputValue * 0.1);
     addTaxDom.innerHTML = taxValue;
 
     const profitDom = document.getElementById("profit");  
