@@ -51,12 +51,12 @@
           カテゴリー
           <span class="indispensable">必須</span>
         </div>
-        <%= f.collection_select(:category_id, Category.all, :id, :name, { selected: 1 }, {class: "select-box category-select"}) %>
+        <%= f.collection_select(:category_id, Category.all, :id, :name, { selected: @item.category_id }, {class: "select-box category-select"}) %>
         <div class="weight-bold-text">
           商品の状態
           <span class="indispensable">必須</span>
         </div>
-        <%= f.collection_select(:condition_id, Condition.all,:id, :name, { selected: 1 }, {class: "select-box condition-select"}) %>
+        <%= f.collection_select(:condition_id, Condition.all,:id, :name, { selected: @item.condition_id }, {class: "select-box condition-select"}) %>
       </div>
     </div>
     <%# /商品の詳細 %>
@@ -72,17 +72,17 @@
           配送料の負担
           <span class="indispensable">必須</span>
         </div>
-        <%= f.collection_select(:shipping_charge_id, ShippingCharge.all,:id, :name, { selected: 1 }, {class: "select-box shipping_charge-select"}) %>
+        <%= f.collection_select(:shipping_charge_id, ShippingCharge.all,:id, :name, { selected: @item.shipping_charge_id }, {class: "select-box shipping_charge-select"}) %>
         <div class="weight-bold-text">
           発送元の地域
           <span class="indispensable">必須</span>
         </div>
-        <%= f.collection_select(:prefecture_id, Prefecture.all,:id, :name, { selected: 1 }, {class:"select-box prefecture-select"}) %>
+        <%= f.collection_select(:prefecture_id, Prefecture.all,:id, :name, { selected: @item.prefecture_id }, {class:"select-box prefecture-select"}) %>
         <div class="weight-bold-text">
           発送までの日数
           <span class="indispensable">必須</span>
         </div>
-        <%= f.collection_select(:shipping_day_id, ShippingDay.all, :id, :name, { selected: 1 }, { class: "select-box shipping_day-select" }) %>
+        <%= f.collection_select(:shipping_day_id, ShippingDay.all, :id, :name, { selected: @item.shipping_day_id }, { class: "select-box shipping_day-select" }) %>
       </div>
     </div>
     <%# /配送について %>
