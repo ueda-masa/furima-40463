@@ -11,3 +11,7 @@ document.addEventListener('turbo:load', () => {
     profitDom.innerHTML = Math.floor(inputValue - taxValue); 
   });
 });
+
+document.addEventListener("turbo:load", price);
+document.addEventListener("turbo:render", price);
+

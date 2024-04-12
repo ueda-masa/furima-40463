@@ -5,14 +5,13 @@ class OrderForm
   with_options presence: true do  
     validates :user_id, :item_id 
     validates :postal_code, format: { with: /\A\d{3}-\d{4}\z/, message: "is invalid." }
-    validates :prefecture_id, numericality: { other_than: 0, message: " can't be blank" }
+    validates :prefecture_id, presence: true, inclusion: { in: Prefecture.pluck(:id), message: "can't be blank" }
     validates :city, presence: { message: "can't be blank" }
     validates :address, presence: { message: "can't be blank" }
-    validates :phone_number, format: { with: /\A\d{10,11}\z/, message: "is invalid. Input only number" }
-    validates :phone_number, length: { minimum: 10, message: "is too short" }
+    validates :phone_number, presence: { message: "can't be blank" }
+    validates :phone_number, format: { with: /\A\d{10,11}\z/, message: "is invalid. Input only number" }, length: { minimum: 10, message: "is too short" }, if: Proc.new { |a| a.phone_number.present? }
     validates :token, presence:{ message: "can't be blank" }
   end
-
 
 
 
@@ -20,7 +19,6 @@ class OrderForm
     Prefecture.find(prefecture_id)
   end
 
-  
   def save
     ActiveRecord::Base.transaction do
       order = Order.create(user_id: user_id, item_id: item_id, token: token)
